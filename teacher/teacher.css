@@ -1,0 +1,16 @@
+/* تحسينات عرض بدون حذف تنسيقات Power Pages المنقولة */
+html{box-sizing:border-box;direction:rtl}*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:#f5f7fa;color:#142b49;font-family:Tahoma,Arial,sans-serif}
+.transfer-warning{margin:12px auto;padding:12px 18px;max-width:1180px;border:1px solid #d8b46c;border-right:5px solid #b58a38;border-radius:10px;background:#fff9e9;line-height:1.8}
+#nafis-teacher button{background:#142b49;color:#fff;border:1px solid #142b49}
+#nafis-teacher .nt-secondary{background:#fff;color:#142b49}
+#nafis-teacher button:focus-visible,#nafis-teacher input:focus-visible,#nafis-teacher select:focus-visible{outline:3px solid #b58a38;outline-offset:2px}
+#nafis-teacher table{width:100%;border-collapse:collapse}
+#nafis-teacher th,#nafis-teacher td{border-bottom:1px solid #e0e6ef;padding:10px;text-align:right}
+#nafis-teacher .nt-metric{background:white;padding:15px;border:1px solid #e0e6ef;border-radius:12px}
+#nafis-teacher .nt-metric strong{display:block;font-size:22px}
+#nafis-teacher .nt-bar{display:block;height:8px;margin-top:5px;background:#e9edf2;border-radius:20px;overflow:hidden}
+#nafis-teacher .nt-bar i{display:block;height:100%;background:#b58a38}
+@media(max-width:800px){#nafis-teacher .nt-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}#nafis-teacher .nt-controls{grid-template-columns:1fr!important}}
+@media(max-width:500px){#nafis-teacher .nt-metrics{grid-template-columns:1fr!important}}
+@media print{.transfer-warning{display:none!important}}
