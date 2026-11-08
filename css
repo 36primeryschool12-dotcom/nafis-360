@@ -1,0 +1,251 @@
+#nafis-student-portal {
+  --navy: #142b49;
+  --navy-dark: #0c1c32;
+  --gold: #b58a38;
+  --gold-light: #e7cf98;
+
+  direction: rtl;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #24364c;
+  line-height: 1.9;
+  padding: 36px 18px;
+  border-top: 5px solid var(--gold);
+  background:
+    radial-gradient(
+      ellipse at top right,
+      rgba(181, 138, 56, 0.10),
+      transparent 55%
+    ),
+    #faf8f3;
+}
+
+#nafis-student-portal *,
+#nafis-student-portal *::before,
+#nafis-student-portal *::after {
+  box-sizing: border-box;
+}
+
+#nafis-student-portal .nsp-container {
+  width: 100%;
+  max-width: 1160px;
+  margin: auto;
+}
+
+/* رأس الهوية */
+#nafis-student-portal .nsp-header {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 38px 26px;
+  margin-bottom: 28px;
+  border: 1px solid var(--gold);
+  border-radius: 22px;
+  background: linear-gradient(
+    135deg,
+    var(--navy),
+    var(--navy-dark)
+  );
+  box-shadow: 0 12px 32px rgba(20, 43, 73, 0.13);
+}
+
+#nafis-student-portal .nsp-header::before,
+#nafis-student-portal .nsp-header::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(231, 207, 152, 0.22);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#nafis-student-portal .nsp-header::before {
+  top: -110px;
+  right: -45px;
+}
+
+#nafis-student-portal .nsp-header::after {
+  bottom: -115px;
+  left: -45px;
+}
+
+#nafis-student-portal .nsp-brand {
+  position: relative;
+  display: inline-block;
+  padding: 6px 24px;
+  border: 1px solid #d6b66f;
+  border-radius: 35px;
+  color: var(--gold-light);
+  background: rgba(231, 207, 152, 0.06);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#nafis-student-portal h1 {
+  position: relative;
+  margin: 18px 0 14px;
+  color: white;
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+#nafis-student-portal .nsp-header p {
+  position: relative;
+  max-width: 780px;
+  margin: auto;
+  color: #edf0f5;
+  font-size: 16px;
+}
+
+#nafis-student-portal .nsp-tagline {
+  position: relative;
+  display: inline-block;
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(231, 207, 152, 0.4);
+  color: var(--gold-light);
+  font-size: 14px;
+}
+
+/* بطاقات الرحلة */
+#nafis-student-portal .nsp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+#nafis-student-portal .nsp-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 26px;
+  border: 1px solid #e4ddce;
+  border-top: 4px solid var(--gold);
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 7px 22px rgba(20, 43, 73, 0.06);
+}
+
+#nafis-student-portal .nsp-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+#nafis-student-portal .nsp-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  border: 1px solid #e0c994;
+  border-radius: 50%;
+  background: #faf3e3;
+  color: var(--navy);
+  font-size: 27px;
+  font-weight: bold;
+}
+
+#nafis-student-portal .nsp-stage {
+  color: #685124;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#nafis-student-portal h2 {
+  margin: 0 0 14px;
+  color: var(--navy);
+  font-size: 23px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+#nafis-student-portal .nsp-card p {
+  flex-grow: 1;
+  margin: 0 0 24px;
+  color: #45556a;
+  font-size: 15px;
+}
+
+/* أزرار التنقل */
+#nafis-student-portal a.nsp-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  padding: 11px 14px;
+  border: 1px solid var(--navy);
+  border-bottom: 3px solid var(--gold);
+  border-radius: 11px;
+  background: var(--navy);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
+
+#nafis-student-portal a.nsp-button:hover {
+  background: var(--navy-dark);
+  color: var(--gold-light);
+}
+
+#nafis-student-portal a.nsp-button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* الإرشادات والتذييل */
+#nafis-student-portal .nsp-guidance {
+  margin-top: 26px;
+  padding: 20px;
+  border: 1px solid #e4d1a7;
+  border-right: 4px solid var(--gold);
+  border-radius: 14px;
+  background: #fcf7eb;
+  text-align: center;
+}
+
+#nafis-student-portal .nsp-guidance strong {
+  color: var(--navy);
+  font-size: 17px;
+}
+
+#nafis-student-portal .nsp-guidance p {
+  margin: 6px 0 0;
+  color: #596779;
+  font-size: 14px;
+}
+
+#nafis-student-portal .nsp-footer {
+  margin-top: 25px;
+  padding-top: 16px;
+  border-top: 1px solid #e3d6ba;
+  color: #596779;
+  text-align: center;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  #nafis-student-portal .nsp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  #nafis-student-portal {
+    padding: 24px 12px;
+  }
+
+  #nafis-student-portal .nsp-header {
+    padding: 28px 18px;
+  }
+
+  #nafis-student-portal .nsp-card {
+    padding: 22px;
+  }
+}
