@@ -130,7 +130,9 @@ td button { padding:6px 9px;font-size:13px;margin:2px; }
 .on { color:#176d4c; }
 .off { color:#995526; }
 .muted { color:#617084;font-size:14px; }
-#message { min-height:28px;font-weight:bold; }
+#message { min-height:28px;font-weight:bold;color:#176d4c; }
+#message.error { color:#a22b2b; }
+code { display:inline-block;font-weight:bold; }
 footer { text-align:center;color:#607082;padding:16px; }
 @media(max-width:700px) {
   .stats { grid-template-columns:1fr; }
@@ -145,7 +147,7 @@ footer { text-align:center;color:#607082;padding:16px; }
   <div class="wrap top">
     <div>
       <div>مختبر نافس 360</div>
-      <h1>لوحة الإدارة المركزية</h1>
+      <h1>لوحة إضافة المدارس الجديدة</h1>
       <p>نكتشف المهارة · ننمّي الإتقان · نقيس الأثر</p>
     </div>
     <a class="home" href="../">العودة للرئيسية</a>
@@ -154,10 +156,9 @@ footer { text-align:center;color:#607082;padding:16px; }
 
 <main>
   <div class="notice">
-    <strong>وضع تجريبي غير متصل:</strong>
-    بيانات المدارس التي تدخلينها هنا مؤقتة، وتختفي عند إعادة تحميل الصفحة.
-    لا تستخدمي بيانات حقيقية للطالبات.
-    يلزم ربط خلفي آمن وتسجيل دخول إداري قبل التشغيل الفعلي.
+    <strong>لوحة تجريبية للمدارس الجديدة.</strong>
+    تُحفظ الإضافات في هذا المتصفح وتبقى بعد تحديث الصفحة.
+    الرموز مخصّصة للعرض التجريبي، وتُدار الرموز الفعلية عبر Power Pages.
   </div>
 
   <section class="stats" aria-label="المؤشرات">
@@ -170,8 +171,8 @@ footer { text-align:center;color:#607082;padding:16px; }
       <span>المدارس النشطة</span>
     </div>
     <div class="stat">
-      <strong id="teachers">—</strong>
-      <span>المعلمات (بعد الربط)</span>
+      <strong id="inactive">0</strong>
+      <span>المدارس غير النشطة</span>
     </div>
   </section>
 
@@ -216,7 +217,7 @@ footer { text-align:center;color:#607082;padding:16px; }
 
   <section class="panel">
     <div class="toolbar">
-      <h2>سجل المدارس</h2>
+      <h2>سجل المدارس الجديدة</h2>
       <input id="search" type="search"
              placeholder="ابحثي باسم المدرسة أو الرمز"
              aria-label="البحث في المدارس">
@@ -237,10 +238,7 @@ footer { text-align:center;color:#607082;padding:16px; }
         </tbody>
       </table>
     </div>
-    <p class="muted">
-      هذه القائمة للمعاينة فقط؛ لا تُزامن مع SharePoint
-      حتى تفعيل الاتصال الآمن.
-    </p>
+<p class="muted">سجل مستقل يبدأ فارغًا وتظهر فيه المدارس المضافة من هذه اللوحة.</p>
   </section>
 </main>
 
@@ -248,178 +246,7 @@ footer { text-align:center;color:#607082;padding:16px; }
   تصميم وتطوير المعلمة بدرية محمد الزهراني | مختبر نافس 360
 </footer>
 
-<script>
-(() => {
-  'use strict';
-
-  // بيانات تجريبية مؤقتة داخل الذاكرة.
-  const schools = [];
-  let editing = null;
-
-  const $ = id => document.getElementById(id);
-  const form = $('schoolForm');
-  const rows = $('rows');
-  const message = $('message');
-
-  function notify(text, error = false) {
-    message.textContent = text;
-    message.style.color = error ? '#a22b2b' : '#176d4c';
-  }
-
-  function newCode() {
-    const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    let code;
-    do {
-      const bytes = new Uint32Array(8);
-      crypto.getRandomValues(bytes);
-      code = Array.from(bytes, n =>
-        alphabet[n % alphabet.length]
-      ).join('');
-    } while (schools.some(s => s.code === code));
-    return code;
-  }
-
-  function clearForm() {
-    editing = null;
-    form.reset();
-    $('schoolCode').value = '';
-    $('formTitle').textContent = 'إضافة مدرسة جديدة';
-    $('saveBtn').textContent = 'إضافة المدرسة وتوليد الرمز';
-    notify('');
-  }
-
-  function render() {
-    const query = $('search').value.trim().toLocaleLowerCase('ar');
-
-    $('total').textContent = schools.length;
-    $('active').textContent =
-      schools.filter(s => s.status === 'active').length;
-
-    rows.replaceChildren();
-
-    const filtered = schools.filter(s =>
-      (s.name + ' ' + s.office + ' ' + s.code)
-        .toLocaleLowerCase('ar').includes(query)
-    );
-
-    if (!filtered.length) {
-      const tr = rows.insertRow();
-      const td = tr.insertCell();
-      td.colSpan = 5;
-      td.textContent = 'لا توجد مدارس مطابقة';
-      return;
-    }
-
-    for (const s of filtered) {
-      const tr = rows.insertRow();
-
-      for (const value of [s.name, s.office, s.code]) {
-        tr.insertCell().textContent = value;
-      }
-
-      const status = tr.insertCell();
-      const tag = document.createElement('span');
-      tag.className = 'status ' +
-        (s.status === 'active' ? 'on' : 'off');
-      tag.textContent =
-        s.status === 'active' ? 'نشطة' : 'غير نشطة';
-      status.append(tag);
-
-      const actions = tr.insertCell();
-
-      const edit = document.createElement('button');
-      edit.textContent = 'تعديل';
-      edit.type = 'button';
-      edit.addEventListener('click', () => {
-        editing = s.code;
-        $('schoolName').value = s.name;
-        $('educationOffice').value = s.office;
-        $('schoolCode').value = s.code;
-        $('schoolStatus').value = s.status;
-        $('formTitle').textContent = 'تعديل بيانات المدرسة';
-        $('saveBtn').textContent = 'حفظ التعديلات';
-        notify('');
-        form.scrollIntoView({
-          behavior:'smooth',
-          block:'start'
-        });
-      });
-
-      const toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'warn';
-      toggle.textContent =
-        s.status === 'active' ? 'تعطيل' : 'تفعيل';
-
-      toggle.addEventListener('click', () => {
-        s.status =
-          s.status === 'active' ? 'inactive' : 'active';
-        render();
-        notify('تم تحديث حالة المدرسة تجريبيًا');
-      });
-
-      actions.append(edit, toggle);
-    }
-  }
-
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-
-    const name = $('schoolName').value.trim();
-    const office = $('educationOffice').value.trim();
-    const status = $('schoolStatus').value;
-
-    if (!name || !office ||
-        name.length > 120 || office.length > 120) {
-      notify('يرجى إدخال اسم المدرسة وإدارة التعليم بشكل صحيح', true);
-      return;
-    }
-
-    if (editing) {
-      const s = schools.find(item => item.code === editing);
-      if (!s) {
-        notify('لم يتم العثور على المدرسة', true);
-        return;
-      }
-
-      s.name = name;
-      s.office = office;
-      s.status = status;
-      clearForm();
-      render();
-      notify('تم تحديث المدرسة في المعاينة فقط');
-      return;
-    }
-
-    if (schools.some(s =>
-      s.name === name && s.office === office)) {
-      notify('هذه المدرسة موجودة بالفعل في المعاينة', true);
-      return;
-    }
-
-    let code;
-    try {
-      code = newCode();
-    } catch {
-      notify('تعذر توليد الرمز الآمن. افتحي الموقع عبر HTTPS', true);
-      return;
-    }
-
-    schools.push({ name, office, status, code });
-    clearForm();
-    render();
-
-    notify(
-      'أُضيفت المدرسة تجريبيًا برمز ' + code +
-      ' — غير محفوظ في قاعدة بيانات'
-    );
-  });
-
-  $('resetBtn').addEventListener('click', clearForm);
-  $('search').addEventListener('input', render);
-
-  render();
-})();
-</script>
+<script src="../assets/school-registry.js" defer></script>
+<script src="../assets/schools-admin.js" defer></script>
 </body>
 </html>
