@@ -1,102 +1,206 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>مختبر نافس 360 | بوابة الطالبة</title>
-  <link rel="stylesheet" href="./style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102842">
+<meta name="description" content="مختبر نافس 360: القياس القبلي والتدريب التفاعلي والقياس البعدي">
+<title>مختبر نافس 360 | البوابة الرئيسية</title>
+<style>
+:root {
+  font-family: Tahoma,Arial,sans-serif;
+  color-scheme: light;
+  --navy:#102842;
+  --gold:#b48b45;
+  --paper:#f5f7fb;
+  --ink:#20334b;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.85;
+}
+a { color:inherit; }
+.wrap { max-width:1120px;margin:auto;padding:24px; }
+.hero {
+  background:linear-gradient(135deg,#102842,#1e466b);
+  color:white;
+  border-bottom:5px solid var(--gold);
+}
+.hero .wrap { padding-top:46px;padding-bottom:42px; }
+.brand { color:#e7c88a;font-weight:700; }
+h1 { font-size:clamp(27px,4vw,43px);margin:8px 0 12px; }
+h2 { font-size:22px;margin:12px 0; }
+p { margin:8px 0 18px; }
+.tag { color:#f3d8a2;font-weight:bold; }
+.intro { margin:25px 0 15px;font-size:18px;font-weight:bold; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.card {
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:18px;
+  padding:25px;
+  box-shadow:0 8px 22px rgba(15,37,63,.06);
+  display:flex;
+  flex-direction:column;
+}
+.card .top {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#52657b;
+}
+.num {
+  display:inline-grid;
+  place-items:center;
+  width:38px;
+  height:38px;
+  background:#f7edda;
+  border-radius:50%;
+  color:#735018;
+  font-weight:bold;
+}
+.card p { flex:1; }
+.btn {
+  display:block;
+  text-decoration:none;
+  text-align:center;
+  background:var(--navy);
+  color:white;
+  border-radius:10px;
+  padding:11px 16px;
+  font-weight:bold;
+}
+.btn:hover,.btn:focus-visible {
+  background:#285781;
+  outline:3px solid #d9b875;
+  outline-offset:2px;
+}
+.extra {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:22px;
+}
+.extra .card { border-top:4px solid var(--gold); }
+.note {
+  margin:25px 0;
+  background:#fff9ec;
+  border-right:5px solid var(--gold);
+  border-radius:10px;
+  padding:17px;
+}
+.foot {
+  text-align:center;
+  border-top:1px solid #dce3ec;
+  padding:25px 12px;
+  color:#566579;
+  font-size:14px;
+}
+@media(max-width:760px) {
+  .grid,.extra { grid-template-columns:1fr; }
+  .wrap { padding:18px; }
+  .hero .wrap { padding-top:30px;padding-bottom:30px; }
+}
+</style>
 </head>
 <body>
 
-<section id="nafis-student-portal" lang="ar" dir="rtl">
-  <div class="nsp-container">
-
-    <header class="nsp-header">
-      <div class="nsp-brand">مختبر نافس 360</div>
-
-      <h1>بوابة الطالبة</h1>
-
-      <p>
-        رحلتكِ لتنمية مهارات العلوم تبدأ بالقياس القبلي،
-        ثم التدريب التفاعلي، وتنتهي بالقياس البعدي لمتابعة تقدّمكِ.
-      </p>
-
-      <div class="nsp-tagline">
-        نكتشف المهارة · ننمّي الإتقان · نقيس الأثر
-      </div>
-    </header>
-
-    <div class="nsp-grid">
-
-      <article class="nsp-card">
-        <div class="nsp-card-top">
-          <span class="nsp-number" aria-hidden="true">١</span>
-          <span class="nsp-stage">بداية الرحلة</span>
-        </div>
-
-        <h2>القياس القبلي</h2>
-
-        <p>
-          اكتشفي مستوى إتقانكِ الحالي لمهارات العلوم،
-          وتعرّفي على المهارات التي تحتاج إلى مزيد من التعلّم والممارسة.
-        </p>
-
-        <a class="nsp-button" href="/pre/">
-          ابدئي القياس القبلي
-        </a>
-      </article>
-
-      <article class="nsp-card">
-        <div class="nsp-card-top">
-          <span class="nsp-number" aria-hidden="true">٢</span>
-          <span class="nsp-stage">تنمية المهارات</span>
-        </div>
-
-        <h2>التدريب التفاعلي</h2>
-
-        <p>
-          طوّري مهاراتكِ من خلال الأنشطة والأسئلة التدريبية،
-          واستفيدي من التغذية الراجعة لفهم إجاباتكِ وتعزيز تعلّمكِ.
-        </p>
-
-        <a class="nsp-button" href="/training/">
-          انتقلي إلى التدريب
-        </a>
-      </article>
-
-      <article class="nsp-card">
-        <div class="nsp-card-top">
-          <span class="nsp-number" aria-hidden="true">٣</span>
-          <span class="nsp-stage">متابعة التقدّم</span>
-        </div>
-
-        <h2>القياس البعدي</h2>
-
-        <p>
-          بعد إكمال التدريب، تحقّقي من تقدّمكِ ومدى تحسّن
-          إتقانكِ للمهارات المستهدفة في العلوم.
-        </p>
-
-        <a class="nsp-button" href="/post/">
-          ابدئي القياس البعدي
-        </a>
-      </article>
-
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">مختبر نافس 360</div>
+    <h1>بوابة الطالبة</h1>
+    <p>
+      رحلتكِ لتنمية مهارات العلوم تبدأ بالقياس القبلي،
+      ثم التدريب التفاعلي، وتنتهي بالقياس البعدي
+      لمتابعة تقدّمكِ.
+    </p>
+    <div class="tag">
+      نكتشف المهارة · ننمّي الإتقان · نقيس الأثر
     </div>
-
-    <aside class="nsp-guidance" aria-label="إرشادات الطالبة">
-      <strong>تعلّمكِ يبدأ بمحاولتكِ</strong>
-      <p>
-        اقرئي بهدوء، وأجيبي بنفسكِ، واستفيدي من كل محاولة
-        لتطوير مهاراتكِ.
-      </p>
-    </aside>
-
-    <footer class="nsp-footer">
-      مختبر نافس 360
-      <span aria-hidden="true"> | </span>
-      تصميم وتطوير المعلمة بدرية محمد الزهراني
-    </footer>
-
   </div>
-</section>
+</header>
+
+<main class="wrap">
+  <p class="intro">اختاري المرحلة المناسبة لرحلتكِ التعليمية</p>
+
+  <section class="grid" aria-label="مراحل التعلم">
+
+    <article class="card">
+      <div class="top">
+        <span class="num">١</span>
+        <span>بداية الرحلة</span>
+      </div>
+      <h2>القياس القبلي</h2>
+      <p>
+        اكتشفي مستوى إتقانكِ الحالي لمهارات العلوم،
+        وتعرّفي على المهارات التي تحتاج إلى مزيد من التعلم والممارسة.
+      </p>
+      <a class="btn" href="./pre/">ابدئي القياس القبلي</a>
+    </article>
+
+    <article class="card">
+      <div class="top">
+        <span class="num">٢</span>
+        <span>تنمية المهارات</span>
+      </div>
+      <h2>التدريب التفاعلي</h2>
+      <p>
+        طوّري مهاراتكِ من خلال الأنشطة والأسئلة التدريبية،
+        واستفيدي من التغذية الراجعة لفهم إجاباتكِ.
+      </p>
+      <a class="btn" href="./training/">انتقلي إلى التدريب</a>
+    </article>
+
+    <article class="card">
+      <div class="top">
+        <span class="num">٣</span>
+        <span>متابعة التقدم</span>
+      </div>
+      <h2>القياس البعدي</h2>
+      <p>
+        بعد إكمال التدريب، تحقّقي من تقدّمكِ
+        ومدى تحسّن إتقانكِ للمهارات المستهدفة في العلوم.
+      </p>
+      <a class="btn" href="./post/">ابدئي القياس البعدي</a>
+    </article>
+
+  </section>
+
+  <section class="extra" aria-label="بوابات الموظفات">
+
+    <article class="card">
+      <h2>لوحة المعلمة</h2>
+      <p>إدارة الطالبات، متابعة النتائج، تحليل المهارات وإصدار التقارير.</p>
+      <a class="btn" href="./teacher/">دخول المعلمة</a>
+    </article>
+
+    <article class="card">
+      <h2>لوحة الإدارة</h2>
+      <p>إضافة المدارس، إدارة رموزها، ومتابعة المؤشرات والتقارير الموحدة.</p>
+      <a class="btn" href="./admin/">دخول الإدارة</a>
+    </article>
+
+  </section>
+
+  <aside class="note">
+    <strong>تعلّمكِ يبدأ بمحاولتكِ.</strong>
+    اقرئي بهدوء، وأجيبي بنفسكِ،
+    واستفيدي من كل محاولة لتطوير مهاراتكِ.
+  </aside>
+</main>
+
+<footer class="foot">
+  مختبر نافس 360 |
+  تصميم وتطوير المعلمة بدرية محمد الزهراني
+</footer>
+
+</body>
+</html>
