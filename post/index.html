@@ -28,9 +28,15 @@
       لا تُستخدم كرصد رسمي.
     </div>
 
-    <section class="panel" id="welcome">
-      <h2>محاكاة القياس البعدي من 30 سؤالًا</h2>
-      <p>
+    <section class="panel" id="locked">
+      <h2>هذه المرحلة مقفلة</h2>
+      <p>أكملي دفعات التدريب الثلاث أولًا لفتح هذه المرحلة.</p>
+      <a class="stage-link" href="../training/">الانتقال إلى دفعات التدريب الثلاث</a>
+    </section>
+
+    <section class="panel hidden" id="welcome">
+      <h2 id="welcome-heading" tabindex="-1">محاكاة القياس البعدي من 30 سؤالًا</h2>
+      <p id="welcome-note">
         تعرض هذه المحاكاة أسئلة العرض التجريبي بترتيب مختلف داخل كل مجال. نتيجتها للتجربة فقط ولا تُستخدم لقياس أثر التدريب.
       </p>
       <button id="start" type="button">بدء المحاكاة</button>
@@ -71,7 +77,8 @@
     </section>
 
     <section class="panel hidden" id="result" aria-live="polite">
-      <h2>نتيجة التجربة</h2>
+      <h2 id="result-heading" tabindex="-1">نتيجة التجربة</h2>
+      <p id="progress-message" role="status"></p>
       <p class="big" id="score"></p>
       <p id="percent"></p>
       <div class="summary" id="domains"></div>
@@ -80,6 +87,7 @@
     </section>
   </main>
 
+  <script src="../assets/demo-journey.js" defer></script>
   <script src="../assets/questions-demo.js" defer></script>
   <script src="../assets/pre-demo.js" defer></script>
 </body>

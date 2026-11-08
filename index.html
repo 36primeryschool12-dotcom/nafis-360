@@ -83,6 +83,12 @@ p { margin:8px 0 18px; }
   outline:3px solid #d9b875;
   outline-offset:2px;
 }
+.btn[aria-disabled="true"] {
+  background:#e9eff6;
+  color:#425871;
+  cursor:default;
+  outline:none;
+}
 .extra {
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -119,7 +125,7 @@ p { margin:8px 0 18px; }
     <h1>بوابة الطالبة</h1>
     <p>
       رحلتكِ لتنمية مهارات العلوم تبدأ بالقياس القبلي،
-      ثم التدريب التفاعلي، وتنتهي بالقياس البعدي
+      ثم ثلاث دفعات تدريب متتابعة، وتنتهي بالقياس البعدي
       لمتابعة تقدّمكِ.
     </p>
     <div class="tag">
@@ -156,7 +162,7 @@ p { margin:8px 0 18px; }
         طوّري مهاراتكِ من خلال الأنشطة والأسئلة التدريبية،
         واستفيدي من التغذية الراجعة لفهم إجاباتكِ.
       </p>
-      <a class="btn" href="./training/">انتقلي إلى التدريب</a>
+      <a class="btn" data-journey-stage="training" data-path="./training/" data-open-label="انتقلي إلى التدريب" aria-disabled="true" data-locked-label="مقفل حتى إكمال القياس القبلي">مقفل حتى إكمال القياس القبلي</a>
     </article>
 
     <article class="card">
@@ -169,7 +175,7 @@ p { margin:8px 0 18px; }
         بعد إكمال التدريب، تحقّقي من تقدّمكِ
         ومدى تحسّن إتقانكِ للمهارات المستهدفة في العلوم.
       </p>
-      <a class="btn" href="./post/">ابدئي القياس البعدي</a>
+      <a class="btn" data-journey-stage="post" data-path="./post/" data-open-label="ابدئي القياس البعدي" aria-disabled="true" data-locked-label="مقفل حتى إكمال دفعات التدريب">مقفل حتى إكمال دفعات التدريب</a>
     </article>
 
   </section>
@@ -210,5 +216,6 @@ p { margin:8px 0 18px; }
   تصميم وتطوير المعلمة بدرية محمد الزهراني
 </footer>
 
+  <script src="./assets/demo-journey.js" defer></script>
 </body>
 </html>

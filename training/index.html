@@ -28,12 +28,18 @@
       لا تُستخدم كرصد رسمي.
     </div>
 
-    <section class="panel" id="welcome">
-      <h2>تدريب تجريبي من 30 سؤالًا</h2>
-      <p>
-        تدرّبي على المجالات الثلاثة. بعد كل اختيار تظهر تغذية راجعة تبيّن الإجابة الصحيحة، ويمكنك تعديل اختيارك قبل الانتقال.
+    <section class="panel" id="locked">
+      <h2>هذه المرحلة مقفلة</h2>
+      <p>أكملي القياس القبلي أولًا لفتح هذه المرحلة.</p>
+      <a class="stage-link" href="../pre/">الانتقال إلى القياس القبلي</a>
+    </section>
+
+    <section class="panel hidden" id="welcome">
+      <h2 id="welcome-heading" tabindex="-1">دفعات التدريب التفاعلي</h2>
+      <p id="welcome-note">
+        ثلاث دفعات، في كل دفعة 10 أسئلة. تظهر التغذية الراجعة بعد كل إجابة، وتُفتح الدفعة التالية عند إكمال الحالية.
       </p>
-      <button id="start" type="button">بدء التدريب</button>
+      <ol class="batch-list" id="batches" aria-label="دفعات التدريب"></ol>
     </section>
 
     <section class="panel hidden" id="quiz">
@@ -71,15 +77,18 @@
     </section>
 
     <section class="panel hidden" id="result" aria-live="polite">
-      <h2>نتيجة التجربة</h2>
+      <h2 id="result-heading" tabindex="-1">نتيجة التجربة</h2>
+      <p id="progress-message" role="status"></p>
       <p class="big" id="score"></p>
       <p id="percent"></p>
       <div class="summary" id="domains"></div>
       <p>هذه نتيجة محلية تجريبية، لم تُرسل إلى SharePoint.</p>
-      <button id="restart" type="button">إعادة التجربة</button>
+      <button id="restart" type="button">العودة إلى دفعات التدريب</button>
+      <p id="onward" hidden><a class="stage-link" href="../post/">الانتقال إلى محاكاة القياس البعدي</a></p>
     </section>
   </main>
 
+  <script src="../assets/demo-journey.js" defer></script>
   <script src="../assets/questions-demo.js" defer></script>
   <script src="../assets/pre-demo.js" defer></script>
 </body>

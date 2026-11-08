@@ -29,8 +29,8 @@
     </div>
 
     <section class="panel" id="welcome">
-      <h2>قياس تجريبي من 30 سؤالًا</h2>
-      <p>
+      <h2 id="welcome-heading" tabindex="-1">قياس تجريبي من 30 سؤالًا</h2>
+      <p id="welcome-note">
         10 أسئلة لعلوم الحياة،
         و10 للعلوم الفيزيائية والكيميائية،
         و10 لعلوم الأرض والفضاء.
@@ -74,15 +74,18 @@
     </section>
 
     <section class="panel hidden" id="result" aria-live="polite">
-      <h2>نتيجة التجربة</h2>
+      <h2 id="result-heading" tabindex="-1">نتيجة التجربة</h2>
+      <p id="progress-message" role="status"></p>
       <p class="big" id="score"></p>
       <p id="percent"></p>
       <div class="summary" id="domains"></div>
       <p>هذه نتيجة محلية تجريبية، لم تُرسل إلى SharePoint.</p>
       <button id="restart" type="button">إعادة التجربة</button>
+      <p id="onward" hidden><a class="stage-link" href="../training/">الانتقال إلى دفعات التدريب</a></p>
     </section>
   </main>
 
+  <script src="../assets/demo-journey.js" defer></script>
   <script src="../assets/questions-demo.js" defer></script>
   <script src="../assets/pre-demo.js" defer></script>
 </body>

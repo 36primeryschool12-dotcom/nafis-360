@@ -169,3 +169,21 @@ progress {
   .option { font-size: 17px; }
   .actions button { flex: 1; }
 }
+
+.stage-link { color: var(--navy); font-weight: 700; }
+
+.batch-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.batch-list li {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  border: 1px solid #d9e1ed;
+  border-radius: 12px;
+  padding: 14px;
+}
