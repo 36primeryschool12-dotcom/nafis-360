@@ -16,6 +16,8 @@
 
 يحتوي مجلد `power-pages/student-journey/` على ملفي HTML وJavaScript الأصليين لرحلة الطالبة، بما فيها التدريب والقياس البعدي. يعتمدان على سياق Power Pages و`window.shell.ajaxSafePost` لتشغيل التدفقات. ربط واجهات GitHub بخدمات Microsoft للتشغيل الفعلي يتطلب خدمة خلفية مصرحًا بها تتحقق من الهوية والصلاحيات قبل الوصول إلى بيانات المدارس والطالبات.
 
+كود صفحة المؤشرات في `power-pages/indicators/nafis-indicators.html`. يستعلم القالب من Dataverse باستخدام Liquid وFetchXML ضمن Power Pages. رابط المؤشرات في الصفحة الرئيسية يفتح لوحة Microsoft، حيث تُعرض النتائج حسب صلاحيات الموقع.
+
 ## الاختبارات
 
 شغّلي `node --test tests/student-demo.test.cjs` للتحقق من توزيع الأسئلة والتنقل والتصحيح والتغذية الراجعة وروابط المراحل.

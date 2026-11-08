@@ -1,0 +1,96 @@
+<!-- مختبر نافس 360 | لوحة المؤشرات الذكية -->
+<section class="naf-dashboard-intro" dir="rtl">
+  <h2>لوحة مؤشرات مختبر نافس 360</h2>
+  <p>التحليل الذكي لنتائج القياس القبلي والبعدي</p>
+</section>
+
+{% fetchxml nafisDashboard %}
+<fetch top="1">
+  <entity name="cr4dc_nafis360_indicators">
+    <attribute name="cr4dc_title" />
+    <attribute name="cr4dc_schoolid" />
+    <attribute name="cr4dc_matchedstudents" />
+    <attribute name="cr4dc_improvedstudents" />
+    <attribute name="cr4dc_improvedpercent" />
+    <attribute name="cr4dc_stablestudents" />
+    <attribute name="cr4dc_stablepercent" />
+    <attribute name="cr4dc_declinedstudents" />
+    <attribute name="cr4dc_declinedpercent" />
+    <attribute name="cr4dc_lastupdated" />
+    <filter type="and">
+      <condition attribute="cr4dc_schoolid" operator="eq" value="ALL" />
+      <condition attribute="cr4dc_title" operator="eq" value="GLOBAL" />
+    </filter>
+  </entity>
+</fetch>
+{% endfetchxml %}
+
+{% assign records = nafisDashboard.results.entities %}
+{% if records.size > 0 %}
+  {% assign indicator = records.first %}
+
+  <section class="naf-metrics" dir="rtl">
+    <div class="naf-metric-card">
+      <h3>الطالبات المقارنات</h3>
+      <div class="naf-metric-value">{{ indicator.cr4dc_matchedstudents | round: 0 }}</div>
+      <p>إجمالي الطالبات اللاتي لهن قياس قبلي وبعدي</p>
+    </div>
+    <div class="naf-metric-card">
+      <h3>الطالبات المتحسنات</h3>
+      <div class="naf-metric-value">{{ indicator.cr4dc_improvedstudents | round: 0 }}</div>
+      <p>عدد الطالبات اللاتي تحسن أداؤهن</p>
+    </div>
+    <div class="naf-metric-card">
+      <h3>نسبة التحسن</h3>
+      <div class="naf-metric-value">{{ indicator.cr4dc_improvedpercent | round: 2 }}%</div>
+      <p>نسبة الطالبات المتحسنات</p>
+    </div>
+    <div class="naf-metric-card">
+      <h3>الطالبات المستقرات</h3>
+      <div class="naf-metric-value">{{ indicator.cr4dc_stablestudents | round: 0 }}</div>
+      <p>عدد الطالبات اللاتي استقر أداؤهن</p>
+    </div>
+    <div class="naf-metric-card">
+      <h3>نسبة الاستقرار</h3>
+      <div class="naf-metric-value">{{ indicator.cr4dc_stablepercent | round: 2 }}%</div>
+      <p>نسبة الطالبات المستقرات</p>
+    </div>
+    <div class="naf-metric-card">
+      <h3>الطالبات المتراجعات</h3>
+      <div class="naf-metric-value">{{ indicator.cr4dc_declinedstudents | round: 0 }}</div>
+      <p>عدد الطالبات اللاتي تراجع أداؤهن</p>
+    </div>
+    <div class="naf-metric-card">
+      <h3>نسبة التراجع</h3>
+      <div class="naf-metric-value">{{ indicator.cr4dc_declinedpercent | round: 2 }}%</div>
+      <p>نسبة الطالبات المتراجعات</p>
+    </div>
+  </section>
+
+  <div class="naf-update-info" dir="rtl">
+    آخر تحديث للمؤشرات:
+    {{ indicator.cr4dc_lastupdated | date: "yyyy/MM/dd HH:mm" }}
+  </div>
+
+  <section class="naf-chart-section" dir="rtl">
+    <h2>تحليل مستويات أداء الطالبات</h2>
+    <p>توزيع نتائج المقارنة بين القياس القبلي والبعدي</p>
+    <div class="naf-chart-layout">
+      <div class="naf-donut" style="--improved: {{ indicator.cr4dc_improvedpercent }}%; --stable: {{ indicator.cr4dc_stablepercent }}%;">
+        <div class="naf-donut-center">
+          <strong>{{ indicator.cr4dc_matchedstudents | round: 0 }}</strong>
+          <span>إجمالي الطالبات</span>
+        </div>
+      </div>
+      <div class="naf-chart-legend">
+        <div><span class="naf-dot improved"></span> متحسنات: {{ indicator.cr4dc_improvedstudents | round: 0 }}</div>
+        <div><span class="naf-dot stable"></span> مستقرات: {{ indicator.cr4dc_stablestudents | round: 0 }}</div>
+        <div><span class="naf-dot declined"></span> متراجعات: {{ indicator.cr4dc_declinedstudents | round: 0 }}</div>
+      </div>
+    </div>
+  </section>
+{% else %}
+  <div class="naf-empty-state" dir="rtl">
+    تعذر عرض المؤشرات حاليًا. يرجى المحاولة لاحقًا.
+  </div>
+{% endif %}
