@@ -1,0 +1,313 @@
+<style>
+  #nafis-student-portal {
+    --np-navy: #142b49;
+    --np-gold: #b58a38;
+    direction: rtl;
+    font-family: Tahoma, Arial, sans-serif;
+    color: var(--np-navy);
+    line-height: 1.9;
+    padding: 28px 16px;
+    background: #faf8f3;
+  }
+
+  #nafis-student-portal,
+  #nafis-student-portal * {
+    box-sizing: border-box;
+  }
+
+  #nafis-student-portal .np-shell {
+    width: 100%;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+
+  #nafis-student-portal .np-header {
+    padding: 30px 22px;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #142b49, #243e60);
+    box-shadow: 0 10px 28px rgba(20, 43, 73, .12);
+  }
+
+  #nafis-student-portal .np-brand {
+    display: inline-block;
+    padding: 5px 22px;
+    border: 1px solid #d6b66f;
+    border-radius: 30px;
+    color: #e7cf98;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  #nafis-student-portal .np-header h1 {
+    margin: 14px 0 10px;
+    color: #fff;
+    font-size: clamp(28px, 5vw, 38px);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  #nafis-student-portal .np-header p {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #edf0f5;
+    font-size: 16px;
+  }
+
+  #nafis-student-portal .np-tagline {
+    display: inline-block;
+    margin-top: 18px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(231, 207, 152, .4);
+    color: #e7cf98;
+    font-size: 14px;
+  }
+
+  #nafis-student-portal .np-path {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #nafis-student-portal .np-path li {
+    padding: 7px 15px;
+    border: 1px solid #e2d2ae;
+    border-radius: 25px;
+    background: #fff;
+    font-size: 15px;
+  }
+
+  #nafis-pre {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #nafis-pre .np-login {
+    width: 100%;
+    max-width: 600px;
+    margin: 24px auto;
+    padding: 24px;
+    border: 1px solid #e4ddce;
+    border-top: 4px solid #b58a38;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(20, 43, 73, .06);
+    text-align: right;
+  }
+
+  #nafis-pre .np-login h2 {
+    margin: 0 0 10px;
+    color: #142b49;
+    font-size: 23px;
+  }
+
+  #nafis-pre .np-login label {
+    display: block;
+    margin: 12px 0 6px;
+    color: #142b49;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  #nafis-pre #np-code,
+  #nafis-pre #np-student {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+    margin: 0 0 14px;
+    padding: 10px 12px;
+    border: 1px solid #c8b486;
+    border-radius: 10px;
+    background: #fff;
+    color: #142b49;
+    font: inherit;
+    font-size: 17px;
+  }
+
+  #nafis-pre #np-code {
+    direction: ltr;
+    text-align: center;
+  }
+
+  #nafis-pre #np-code:focus,
+  #nafis-pre #np-student:focus {
+    outline: 3px solid rgba(181, 138, 56, .3);
+    outline-offset: 2px;
+  }
+
+  #nafis-pre .np-login .npq-button {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 11px 16px;
+    border: 0;
+    border-radius: 10px;
+    background: #142b49 !important;
+    color: #fff !important;
+    font: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  #nafis-pre button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+  }
+
+  #nafis-pre #np-message {
+    min-height: 28px;
+    margin: 14px 0 0;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+  }
+
+  #nafis-pre #np-students-section {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid #eadfc8;
+  }
+
+  #nafis-pre #np-students-section[hidden] {
+    display: none !important;
+  }
+
+  #nafis-pre #np-school-name {
+    margin: 0 0 12px;
+    color: #142b49;
+    font-size: 21px;
+    line-height: 1.7;
+  }
+
+  #nafis-pre #np-selection {
+    margin: 8px 0 12px;
+    color: #596779;
+    font-size: 14px;
+  }
+
+  #nafis-student-portal .np-guidance {
+    max-width: 780px;
+    margin: 24px auto 0;
+    padding: 16px;
+    border: 1px solid #e4d1a7;
+    border-radius: 14px;
+    background: #fcf7eb;
+    text-align: center;
+  }
+
+  #nafis-student-portal .np-guidance p {
+    margin: 4px 0 0;
+    color: #596779;
+    font-size: 14px;
+  }
+
+  #nafis-student-portal .np-footer {
+    margin-top: 24px;
+    padding-top: 14px;
+    border-top: 1px solid #e3d6ba;
+    color: #596779;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  @media (max-width: 600px) {
+    #nafis-student-portal {
+      padding: 18px 10px;
+    }
+
+    #nafis-student-portal .np-header,
+    #nafis-pre .np-login {
+      padding: 20px 15px;
+    }
+
+    #nafis-student-portal .np-path {
+      gap: 6px;
+    }
+
+    #nafis-student-portal .np-path li {
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+  }
+</style>
+
+<section id="nafis-student-portal" lang="ar" dir="rtl">
+  <div class="np-shell">
+    <header class="np-header">
+      <div class="np-brand">مختبر نافس 360</div>
+      <h1>بوابة الطالبة</h1>
+      <p>
+        رحلتكِ لتنمية مهارات العلوم تبدأ بالقياس القبلي،
+        ثم دفعات التدريب، وتنتهي بالقياس البعدي لمتابعة تقدّمكِ.
+      </p>
+      <div class="np-tagline">
+        نكتشف المهارة · ننمّي الإتقان · نقيس الأثر
+      </div>
+    </header>
+
+    <ol class="np-path" aria-label="مراحل الرحلة التعليمية">
+      <li>١ · القياس القبلي</li>
+      <li>٢ · دفعات التدريب</li>
+      <li>٣ · القياس البعدي</li>
+    </ol>
+
+    <main id="nafis-pre" lang="ar" dir="rtl">
+      <section class="np-login" aria-labelledby="np-login-title">
+        <h2 id="np-login-title">ابدئي رحلتكِ التعليمية</h2>
+        <p>أدخلي رمز مدرستكِ، ثم اختاري اسمكِ لعرض المرحلة المتاحة لكِ.</p>
+
+        <label for="np-code">رمز المدرسة</label>
+        <input
+          id="np-code"
+          type="text"
+          dir="ltr"
+          maxlength="60"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="أدخلي رمز المدرسة"
+        >
+
+        <button id="np-load" class="npq-button" type="button">
+          عرض طالبات المدرسة
+        </button>
+
+        <p id="np-message" role="status" aria-live="polite"></p>
+
+        <section id="np-students-section" hidden>
+          <h2 id="np-school-name"></h2>
+
+          <label for="np-student">اختاري اسمكِ</label>
+          <select id="np-student" disabled>
+            <option value="">اختاري اسمكِ من القائمة</option>
+          </select>
+
+          <p id="np-selection"></p>
+
+          <button id="np-start" class="npq-button" type="button" disabled>
+            فتح رحلتي التعليمية
+          </button>
+        </section>
+      </section>
+    </main>
+
+    <aside class="np-guidance" aria-label="إرشادات الطالبة">
+      <strong>تعلّمكِ يبدأ بمحاولتكِ</strong>
+      <p>
+        اقرئي بهدوء، وأجيبي بنفسكِ، واحفظي إكمال كل تدريب لفتح التالي.
+        علامة الصح الخضراء تعني تأكيد حفظ الإكمال.
+      </p>
+    </aside>
+
+    <footer class="np-footer">
+      مختبر نافس 360
+      <span aria-hidden="true"> | </span>
+      تصميم وتطوير المعلمة بدرية محمد الزهراني
+    </footer>
+  </div>
+</section>
+

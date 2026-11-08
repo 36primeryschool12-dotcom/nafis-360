@@ -2,7 +2,20 @@
 (() => {
   "use strict";
 
-  const Q = window.NAFIS_DEMO_QUESTIONS;
+  const mode = document.body.dataset.mode;
+  const bank = window.NAFIS_DEMO_QUESTIONS;
+  const Q = mode === "post" && Array.isArray(bank)
+    ? reorderWithinDomains(bank)
+    : bank;
+
+  function reorderWithinDomains(questions) {
+    const domains = new Map();
+    for (const question of questions) {
+      if (!domains.has(question.domain)) domains.set(question.domain, []);
+      domains.get(question.domain).push(question);
+    }
+    return Array.from(domains.values()).flatMap((group) => group.reverse());
+  }
   const $ = (id) => document.getElementById(id);
 
   const state = {
@@ -38,7 +51,7 @@
 
     $("question").textContent = q.text;
     $("options").replaceChildren();
-    $("status").textContent = "";
+    showFeedback(q, state.answers[i]);
 
     q.options.forEach((option, j) => {
       const label = document.createElement("label");
@@ -53,6 +66,7 @@
       input.addEventListener("change", () => {
         state.answers[i] = j;
         updateProgress();
+        showFeedback(q, j);
       });
 
       const text = document.createElement("span");
@@ -70,6 +84,16 @@
         : "التالي";
 
     $("question").focus();
+  }
+
+  function showFeedback(question, answer) {
+    const status = $("status");
+    status.textContent = "";
+    if (mode !== "training" || answer === null) return;
+
+    status.textContent = answer === question.correct
+      ? "إجابة صحيحة. أحسنتِ!"
+      : `الإجابة الصحيحة: ${question.options[question.correct]}.`;
   }
 
   function finish() {
